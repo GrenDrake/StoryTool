@@ -10,10 +10,12 @@ CXXFLAGS= --std=c++11 -g -Wall
 OBJS=src/storytools.o src/story.o src/replace.o src/exporterBare.o \
 	src/exporterHTML.o src/exporterRTF.o src/exporterMarkdown.o
 
-.PHONY: clean
+.PHONY: all clean
 
-all: $(OBJS)
-	g++ $(OBJS) $(LFLAGS) -o storytools
+all: storytool
+
+storytool: $(OBJS)
+	g++ $(OBJS) $(LFLAGS) -o storytool
 
 clean:
-	$(RM) src/*.o storytools
+	$(RM) src/*.o storytool
