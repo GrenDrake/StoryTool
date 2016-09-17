@@ -60,19 +60,22 @@ int Paragraph::wordcount() const {
 }
 
 void Story::fromFile(const std::string &filename) {
+	scene = nullptr;
+	chapter = nullptr;
+	fromFileHelper(filename);
+}
+
+void Story::fromFileHelper(const std::string &filename) {
 	std::ifstream infile(filename);
 	if (!infile) {
 		std::cerr << "Could not open \"" << filename << "\"\n";
 		return;
 	}
 
-	Scene     *scene   = nullptr;
-	Chapter   *chapter = nullptr;
-
 	if (infile.peek() == 0xEF) {
 		infile.ignore();
 		if (infile.get() != 0xBB || infile.get() != 0xBF) {
-			std::cerr << "Story file has bad encoding format.\n";
+			std::cerr << "Story file " << filename << " has bad encoding format.\n";
 			return;
 		}
 	}
@@ -123,8 +126,14 @@ void Story::fromFile(const std::string &filename) {
 				continue;
 			}
 			
+			// process include command
+			if (inputline == "/include") {
+				fromFileHelper(value);
+				continue;
+			}
+			
 			// unknown paragraph command
-			std::cerr << "Unknown paragraph command on line " << lineNo << ".\n";
+			std::cerr << "Unknown paragraph command on line " << lineNo << " of file " << filename << ".\n";
 			continue;
 		}
 
@@ -196,6 +205,11 @@ void Story::displayInfo() const {
 		std::cout << "\n";
 	}
 
+	std::cout << "\n" << std::setw(width) << "Statistics" << "\n";
+	for (size_t i = 0; i < width; ++i) {
+		std::cout << "-";
+	}
+	std::cout << "\n";
 	std::cout << std::setw(width) << "Average Chapter" << "  ";
 	std::cout << std::setw(wordCountWidth) << averageChapter() << " words\n";
 	std::cout << std::setw(width) << "Average Scene" << "  ";

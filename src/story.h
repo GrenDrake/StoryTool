@@ -218,12 +218,18 @@ public:
 		}
 	}
 private:
+	void fromFileHelper(const std::string &filename);
+
 	int wordsPerPage;
 
 	size_t longestChapterName;
 	size_t longestSceneName;
 	std::vector<const Chapter*> chapters;
 	std::map<std::string,std::string> metadata;
+	
+	// these are used for the story loading process
+	Scene *scene;
+	Chapter *chapter;
 };
 
 std::string &trim(std::string &s);
