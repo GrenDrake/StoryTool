@@ -65,6 +65,9 @@ void MarkdownExporter::doParagraph(const std::string &text) {
 	trim(t);
 	if (!t.empty()) {
 		if (inList) {
+			for (size_t i = 1; i < listLevel; ++i) {
+				outfile << "\t";
+			}
 			outfile << "- " << t << "\n";
 		} else {
 			if (endOfList) {
