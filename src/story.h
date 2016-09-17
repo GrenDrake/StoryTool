@@ -35,6 +35,9 @@ public:
 	const std::string &getText() const {
 		return text;
 	}
+	int getLine() const {
+		return line;
+	}
 	int wordcount() const;
 
 private:

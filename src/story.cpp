@@ -89,36 +89,42 @@ void Story::fromFile(const std::string &filename) {
 		}
 
 
-		// process metadata statements
-		if (chapter == nullptr && inputline[0] == ':') {
+		// process paragraph formats
+		if (inputline[0] == '/') {
 			size_t pos = inputline.find_first_of(' ');
 			std::string value;
 			if (pos != std::string::npos) {
 				value = trim(inputline.substr(pos));
 				inputline.resize(pos);
 			}
-			setMetadata(trim(inputline.substr(1)), value);
-			continue;
-		}
-
-
-		// process chapter boundaries
-		if (inputline.compare(0, 8, "Chapter:") == 0) {
-			chapter = new Chapter(lineNo, trim(inputline.substr(8)));
-			addChapter(chapter);
-			scene = nullptr;
-			continue;
-		}
-
-
-		// process scene boundaries
-		if (inputline[0] == '#' || inputline[0] == '+') {
-			if (chapter == nullptr) {
-				chapter = new Chapter(lineNo, "Anonymous Chapter");
-				addChapter(chapter);
+			
+			// handle metadata commands
+			if (inputline == "/title" || inputline == "/author" || inputline == "/date") {
+				setMetadata(inputline.substr(1), value);
+				continue;
 			}
-			scene = new Scene(lineNo, trim(inputline.substr(1)), (inputline[0] == '+') );
-			chapter->addScene(scene);
+			
+			// process chapter boundaries
+			if (inputline == "/chapter") {
+				chapter = new Chapter(lineNo, value);
+				addChapter(chapter);
+				scene = nullptr;
+				continue;
+			}
+
+			// process scene boundaries
+			if (inputline == "/scene" || inputline == "/todoscene") {
+				if (chapter == nullptr) {
+					chapter = new Chapter(lineNo, "Anonymous Chapter");
+					addChapter(chapter);
+				}
+				scene = new Scene(lineNo, trim(value), (inputline == "/todoscene") );
+				chapter->addScene(scene);
+				continue;
+			}
+			
+			// unknown paragraph command
+			std::cerr << "Unknown paragraph command on line " << lineNo << ".\n";
 			continue;
 		}
 
