@@ -1,0 +1,4 @@
+*.o
+storytools
+storytools.exe
+.DS_Store
