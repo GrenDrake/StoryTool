@@ -26,67 +26,94 @@ StoryExporter* exportHTMLSeperate(const std::vector<std::string> &args);
 StoryExporter* exportBare(const std::vector<std::string> &args);
 StoryExporter* exportMarkdown(const std::vector<std::string> &args);
 
-int main(int argc, char *argv[]) {
-	exporter_t exporters[] = {
-		{ "bare", 1, 1, "Plain text with no formatting, headers, or metadata", exportBare },
-		{ "html", 1, 2, "HTML page with optional template", exportHTML },
-		{ "htmlsep", 1, 2, "Export as a seperate HTML page for each chapter with optional template", exportHTMLSeperate },
-		{ "markdown", 1, 1, "Translate into markdown format", exportMarkdown },
-		{ "rtf",  1, 1, "Export as RTF document", exportRTF },
-		// TODO bbcode
-		{ nullptr, 0, 0, nullptr, nullptr }
-	};
+exporter_t exporters[] = {
+	{ "bare", 1, 1, "Plain text with no formatting, headers, or metadata", exportBare },
+	{ "html", 1, 2, "HTML page with optional template", exportHTML },
+	{ "htmlsep", 1, 2, "Export as a seperate HTML page for each chapter with optional template", exportHTMLSeperate },
+	{ "markdown", 1, 1, "Translate into markdown format", exportMarkdown },
+	{ "rtf",  1, 1, "Export as RTF document", exportRTF },
+	// TODO bbcode
+	{ nullptr, 0, 0, nullptr, nullptr }
+};
 
-	if (argc == 1 || argc == 3) {
-		std::cerr << "USAGE: storytools <filename> [<export_format> <export_file> [export options]]\n";
-		std::cerr << "Supported export formats:\n";
-		for (size_t i = 0; exporters[i].code != 0; ++i) {
-			std::cerr << std::setw(12) << exporters[i].code << "   ";
-			std::cerr << exporters[i].desc << "\n";
-		}
+void showHelp() {
+	std::cerr << "USAGE: storytools <filename> [-quiet] [<export_format> <export_file> [export options]]\n";
+	std::cerr << "Supported export formats:\n";
+	for (size_t i = 0; exporters[i].code != 0; ++i) {
+		std::cerr << std::setw(12) << exporters[i].code << "   ";
+		std::cerr << exporters[i].desc << "\n";
+	}
+}
+
+int main(int argc, char *argv[]) {
+
+	if (argc == 1) {
+		showHelp();
 		return 1;
 	}
 
+	bool showCount = true;
 	std::locale loc("");
 	std::cout.imbue(loc);
 
 	std::string sourceFilename(argv[1]);
 	Story story;
 	story.fromFile(sourceFilename);
-	story.displayInfo();
 
+	size_t firstArg = 3;
 	if (argc > 2) {
+		if (strcmp(argv[2], "-quiet") == 0) {
+			++firstArg;
+			showCount = false;
+		}
+	}
+
+	if (showCount) {
+		story.displayInfo();
+	}
+
+	if (argc >= (int)firstArg) {
 		StoryExporter *exporter = nullptr;
+		std::string exporterName = argv[firstArg - 1];
 
-		std::vector<std::string> args;
-		for (int i = 3; i < argc; ++i) {
-			args.push_back(argv[i]);
-		}
-
-		for (size_t i = 0; exporter == nullptr && exporters[i].code != 0; ++i) {
-			if (strcmp(exporters[i].code, argv[2]) == 0) {
-				if (args.size() < exporters[i].minArgs || args.size() > exporters[i].maxArgs) {
-					std::cerr << exporters[i].code << " exporter expects ";
-					std::cerr << exporters[i].minArgs << " to ";
-					std::cerr << exporters[i].maxArgs << " arguments; found ";
-					std::cerr << argc << "\n";
-					return 1;
-				}
-				exporter = exporters[i].exportFunc(args);
+		if (!exporterName.empty()) {
+			std::vector<std::string> args;
+			for (int i = firstArg; i < argc; ++i) {
+				args.push_back(argv[i]);
 			}
-		}
 
-		if (exporter == nullptr) {
-			std::cerr << "Unrecognized exporter " << argv[2] << ".\n";
-			return 1;
-		}
+			if (args.empty()) {
+				std::cerr << "Tried to export story to nowhere!\n\n";
+				showHelp();
+				return 1;
+			}
 
-		if (!exporter->good()) {
-			std::cerr << "Error writing to file " << argv[3] << ".\n";
-			return 1;
+			for (size_t i = 0; exporter == nullptr && exporters[i].code != 0; ++i) {
+				if (exporterName == exporters[i].code) {
+					if (args.size() < exporters[i].minArgs || args.size() > exporters[i].maxArgs) {
+						std::cerr << exporters[i].code << " exporter expects ";
+						std::cerr << exporters[i].minArgs << " to ";
+						std::cerr << exporters[i].maxArgs << " arguments; found ";
+						std::cerr << argc << "\n";
+						return 1;
+					}
+					exporter = exporters[i].exportFunc(args);
+				}
+			}
+
+			if (exporter == nullptr) {
+				std::cerr << "Unrecognized exporter " << argv[2] << ".\n\n";
+				showHelp();
+				return 1;
+			}
+
+			if (!exporter->good()) {
+				std::cerr << "Error writing to file " << argv[3] << ".\n";
+				return 1;
+			}
+			story.doExport(exporter);
+			delete exporter;
 		}
-		story.doExport(exporter);
-		delete exporter;
 	}
 
 	return 0;
