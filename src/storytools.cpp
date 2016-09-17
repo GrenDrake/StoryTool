@@ -14,8 +14,8 @@
 
 typedef struct EXPORTER {
 	const char *code;
-	int minArgs;
-	int maxArgs;
+	unsigned int minArgs;
+	unsigned int maxArgs;
 	const char *desc;
 	StoryExporter* (*exportFunc)(const std::vector<std::string>&);
 } exporter_t;
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 		StoryExporter *exporter = nullptr;
 
 		std::vector<std::string> args;
-		for (size_t i = 3; i < argc; ++i) {
+		for (int i = 3; i < argc; ++i) {
 			args.push_back(argv[i]);
 		}
 

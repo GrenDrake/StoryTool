@@ -17,8 +17,7 @@ void BaseHTMLExporter::doScene(const std::string &name) {
 void BaseHTMLExporter::doParagraph(const std::string &text) {
 	std::string t = text;
 	size_t pos = 0;
-	bool endOfList = false;
-	int listLevel;
+	size_t listLevel;
 
 	trim(t);
 
@@ -46,7 +45,6 @@ void BaseHTMLExporter::doParagraph(const std::string &text) {
 	} else if (inList) {
 		// end list
 		inList = false;
-		endOfList = true;
 	}
 
 

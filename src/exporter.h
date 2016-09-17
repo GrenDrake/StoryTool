@@ -49,7 +49,7 @@ private:
 	std::ofstream outfile;
 	bool firstScene;
 	bool inList;
-	int listLevel;
+	size_t listLevel;
 };
 
 class RTFExporter : public StoryExporter {
@@ -75,7 +75,7 @@ private:
 	std::ofstream outfile;
 	bool firstScene;
 	bool inList;
-	int listLevel;
+	size_t listLevel;
 };
 
 class BaseHTMLExporter : public StoryExporter {
@@ -96,7 +96,7 @@ protected:
 	bool firstScene;
 	const Story *story;
 	bool inList;
-	int lastListLevel;
+	size_t lastListLevel;
 };
 
 class HTMLSingleExporter : public BaseHTMLExporter {
@@ -116,7 +116,7 @@ private:
 class HTMLMultipleExporter : public BaseHTMLExporter {
 public:
 	HTMLMultipleExporter(const std::string &filename, const std::string &templateFilename)
-		: chapterNo(1), filename(filename), templateFilename(templateFilename)		
+		: chapterNo(1), filename(filename), templateFilename(templateFilename)
 	{ }
 
 	void virtual doChapter(const std::string &name);
