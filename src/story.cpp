@@ -116,7 +116,7 @@ void Story::fromFileHelper(const std::string &filename) {
 			
 			// process chapter boundaries
 			if (inputline == "/chapter") {
-				chapter = new Chapter(lineNo, value);
+				chapter = new Chapter(filename, lineNo, value);
 				addChapter(chapter);
 				scene = nullptr;
 				continue;
@@ -125,10 +125,10 @@ void Story::fromFileHelper(const std::string &filename) {
 			// process scene boundaries
 			if (inputline == "/scene" || inputline == "/todoscene") {
 				if (chapter == nullptr) {
-					chapter = new Chapter(lineNo, "Anonymous Chapter");
+					chapter = new Chapter(filename, lineNo, "Anonymous Chapter");
 					addChapter(chapter);
 				}
-				scene = new Scene(lineNo, trim(value), (inputline == "/todoscene") );
+				scene = new Scene(filename, lineNo, trim(value), (inputline == "/todoscene") );
 				chapter->addScene(scene);
 				continue;
 			}
@@ -152,11 +152,11 @@ void Story::fromFileHelper(const std::string &filename) {
 
 		// add paragraph text
 		if (chapter == nullptr) {
-			chapter = new Chapter(lineNo, "Anonymous Chapter");
+			chapter = new Chapter(filename, lineNo, "Anonymous Chapter");
 			addChapter(chapter);
 		}
 		if (scene == nullptr) {
-			scene = new Scene(lineNo, "Anonymous Scene");
+			scene = new Scene(filename, lineNo, "Anonymous Scene");
 			chapter->addScene(scene);
 		}
 		scene->addParagraph(new Paragraph(lineNo, inputline));
@@ -192,7 +192,8 @@ void Story::displayInfo() const {
 		if (chapters.size() > 1) {
 			std::cout << std::setw(width) << c->getName() << "  ";
 			std::cout << std::setw(wordCountWidth) << c->wordcount() << " words";
-			std::cout << ", line #" << c->getLine() << "\n";
+			std::cout << ", line #" << c->getLine() << ", ";
+            std::cout << c->getSourceFile() << "\n";
 			for (size_t i = 0; i < width; ++i) {
 				std::cout << "-";
 			}
@@ -206,7 +207,8 @@ void Story::displayInfo() const {
 			} else {
 				std::cout << std::setw(wordCountWidth) << s->wordcount();
 			}
-			std::cout << " words, line #" << s->getLine() << "\n";
+			std::cout << " words, line #" << s->getLine() << ", ";
+            std::cout << s->getSourceFile() << "\n";
 		});
 
 		std::cout << "\n";

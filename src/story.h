@@ -47,8 +47,8 @@ private:
 
 class Scene {
 public:
-	Scene(int lineNo, const std::string &name, bool predict = false)
-		: predictive(predict), line(lineNo), name(name)
+	Scene(std::string sourceFile, int lineNo, const std::string &name, bool predict = false)
+		: sourceFile(sourceFile), predictive(predict), line(lineNo), name(name)
 	{ }
 	void addParagraph(const Paragraph *newPara) {
 		if (!predictive) {
@@ -61,6 +61,9 @@ public:
 
 	const std::string &getName() const {
 		return name;
+	}
+	const std::string& getSourceFile() const {
+		return sourceFile;
 	}
 	int getLine() const {
 		return line;
@@ -79,6 +82,7 @@ public:
 
 	void doExport(StoryExporter *exporter) const;
 private:
+	std::string sourceFile;
 	bool predictive;
 	int line;
 	std::string name;
@@ -87,8 +91,8 @@ private:
 
 class Chapter {
 public:
-	Chapter(int lineNo, const std::string &name)
-		: longestSceneName(0), line(lineNo), name(name)
+	Chapter(std::string sourceFile, int lineNo, const std::string &name)
+		: sourceFile(sourceFile), longestSceneName(0), line(lineNo), name(name)
 	{ }
 
 	void addScene(const Scene *newScene) {
@@ -109,6 +113,9 @@ public:
 	const std::string &getName() const {
 		return name;
 	}
+	const std::string& getSourceFile() const {
+		return sourceFile;
+	}
 	int getLine() const {
 		return line;
 	}
@@ -128,6 +135,7 @@ public:
 
 	void doExport(StoryExporter *exporter) const;
 private:
+	std::string sourceFile;
 	size_t longestSceneName;
 	int line;
 	std::string name;
