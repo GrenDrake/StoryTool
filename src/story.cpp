@@ -133,12 +133,6 @@ void Story::fromFileHelper(const std::string &filename) {
 				continue;
 			}
 			
-			// process include command
-			if (inputline == "/include") {
-				fromFileHelper(value);
-				continue;
-			}
-			
 			// unknown paragraph command
 			std::cerr << "Unknown paragraph command on line " << lineNo << " of file " << filename << ".\n";
 			continue;
