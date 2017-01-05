@@ -100,6 +100,13 @@ void Story::fromFileHelper(const std::string &filename) {
 				value = trim(inputline.substr(pos));
 				inputline.resize(pos);
 			}
+            
+            // handle include commands
+            if (inputline == "/include") {
+                std::cerr << "including \"" << value << "\" from \"" << filename << "\"\n";
+                fromFileHelper(value);
+                continue;
+            }
 			
 			// handle metadata commands
 			if (inputline == "/title" || inputline == "/author" || inputline == "/date") {
