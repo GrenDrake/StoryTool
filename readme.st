@@ -44,7 +44,7 @@ The most basic formatting commands are for [b]bold[/b] and [i]italic[/i]. These 
 Bulleted lists are also considered to be text formatting commands; these are created by placing one or more hyphons (-) or asterisks (*) at the beginning of the line. The number of symbols indicates the depth of the list item. A sample list is included below.
 
 - item one, first level
-- item two, second level
+- item two, first level
 -- item one, second level
 - item three, first level
 
