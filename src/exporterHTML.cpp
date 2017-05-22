@@ -54,6 +54,11 @@ void BaseHTMLExporter::doParagraph(const std::string &text) {
 	t = doReplace(t, "--", "&ndash;");
 	t = doReplace(t, "\\[b\\](.*?)\\[\\/b\\]", "<b>$1</b>");
 	t = doReplace(t, "\\[i\\](.*?)\\[\\/i\\]", "<i>$1</i>");
+	t = doReplace(t, "^\"", "&#x201C;"); // left double quote  0x201C
+	t = doReplace(t, " \"", " &#x201C;"); // left double quote  0x201C
+	t = doReplace(t, "\"",  "&#x201D;");  // right double quote 0x201D
+	t = doReplace(t, " '",  " &#x2018;"); // left single quote  0x2018
+	t = doReplace(t, "'",   "&#x2019;");  // right single quote 0x2019
 
 	// remove remaining control codes / comments
 	while ( (pos = t.find_first_of('[')) != std::string::npos) {
