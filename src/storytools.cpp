@@ -25,6 +25,7 @@ StoryExporter* exportHTML(const std::vector<std::string> &args);
 StoryExporter* exportHTMLSeperate(const std::vector<std::string> &args);
 StoryExporter* exportBare(const std::vector<std::string> &args);
 StoryExporter* exportMarkdown(const std::vector<std::string> &args);
+StoryExporter* exportBBCode(const std::vector<std::string> &args);
 
 exporter_t exporters[] = {
 	{ "bare", 1, 1, "Plain text with no formatting, headers, or metadata", exportBare },
@@ -32,7 +33,7 @@ exporter_t exporters[] = {
 	{ "htmlsep", 1, 2, "Export as a seperate HTML page for each chapter with optional template", exportHTMLSeperate },
 	{ "markdown", 1, 1, "Translate into markdown format", exportMarkdown },
 	{ "rtf",  1, 1, "Export as RTF document", exportRTF },
-	// TODO bbcode
+	{ "bbcode", 1, 1, "Export as BBCode", exportBBCode },
 	{ nullptr, 0, 0, nullptr, nullptr }
 };
 
@@ -139,4 +140,7 @@ StoryExporter* exportBare(const std::vector<std::string> &args) {
 }
 StoryExporter* exportMarkdown(const std::vector<std::string> &args) {
 	return new MarkdownExporter(args[0]);
+}
+StoryExporter* exportBBCode(const std::vector<std::string> &args) {
+	return new BBCodeExporter(args[0]);
 }

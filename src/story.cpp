@@ -100,20 +100,20 @@ void Story::fromFileHelper(const std::string &filename) {
 				value = trim(inputline.substr(pos));
 				inputline.resize(pos);
 			}
-            
+
             // handle include commands
             if (inputline == "/include") {
                 std::cerr << "including \"" << value << "\" from \"" << filename << "\"\n";
                 fromFileHelper(value);
                 continue;
             }
-			
+
 			// handle metadata commands
 			if (inputline == "/title" || inputline == "/author" || inputline == "/date") {
 				setMetadata(inputline.substr(1), value);
 				continue;
 			}
-			
+
 			// process chapter boundaries
 			if (inputline == "/chapter") {
 				chapter = new Chapter(filename, lineNo, value);
@@ -132,7 +132,7 @@ void Story::fromFileHelper(const std::string &filename) {
 				chapter->addScene(scene);
 				continue;
 			}
-			
+
 			// unknown paragraph command
 			std::cerr << "Unknown paragraph command on line " << lineNo << " of file " << filename << ".\n";
 			continue;

@@ -130,6 +130,31 @@ private:
 	std::string chapterName;
 };
 
+class BBCodeExporter : public StoryExporter {
+public:
+	BBCodeExporter(const std::string &filename)
+		: chapterNo(1), story(nullptr), filename(filename), outfile(filename),
+		firstScene(true), inList(false), listLevel(0)
+	{ }
+
+	bool virtual good() const {
+		return outfile.good();
+	}
+
+	void virtual start(const Story &story);
+	void virtual doChapter(const std::string &name);
+	void virtual doScene(const std::string &name);
+	void virtual doParagraph(const std::string &text);
+	void virtual end();
+private:
+	int chapterNo;
+	const Story *story;
+	std::string filename;
+	std::ofstream outfile;
+	bool firstScene;
+	bool inList;
+	size_t listLevel;
+};
 
 
 #endif // EXPORTER_H
