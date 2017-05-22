@@ -59,24 +59,24 @@ int Paragraph::wordcount() const {
 	return wc;
 }
 
-void Story::fromFile(const std::string &filename) {
+bool Story::fromFile(const std::string &filename) {
 	scene = nullptr;
 	chapter = nullptr;
-	fromFileHelper(filename);
+	return fromFileHelper(filename);
 }
 
-void Story::fromFileHelper(const std::string &filename) {
+bool Story::fromFileHelper(const std::string &filename) {
 	std::ifstream infile(filename);
 	if (!infile) {
 		std::cerr << "Could not open \"" << filename << "\"\n";
-		return;
+		return false;
 	}
 
 	if (infile.peek() == 0xEF) {
 		infile.ignore();
 		if (infile.get() != 0xBB || infile.get() != 0xBF) {
 			std::cerr << "Story file " << filename << " has bad encoding format.\n";
-			return;
+			return false;
 		}
 	}
 
@@ -157,6 +157,7 @@ void Story::fromFileHelper(const std::string &filename) {
 	}
 	infile.close();
 	finish();
+        return true;
 }
 
 void Story::displayInfo() const {

@@ -59,7 +59,9 @@ int main(int argc, char *argv[]) {
 
 	std::string sourceFilename(argv[1]);
 	Story story;
-	story.fromFile(sourceFilename);
+	if (!story.fromFile(sourceFilename)) {
+            return 1;
+        }
 
 	size_t firstArg = 3;
 	if (argc > 2) {

@@ -13,7 +13,7 @@ class Story;
 class StoryExporter {
 public:
 	virtual ~StoryExporter() {}
-	
+
 	bool virtual good() const = 0;
 	void virtual start(const Story &story) = 0;
 	void virtual doChapter(const std::string &name) = 0;
@@ -149,7 +149,7 @@ public:
 		// http://www.fionaraven.com/estimate-your-page-count/
 		: wordsPerPage(390), longestChapterName(0), longestSceneName(0)
 	{ }
-	void fromFile(const std::string &filename);
+	bool fromFile(const std::string &filename);
 	void displayInfo() const;
 	void doExport(StoryExporter *exporter) const;
 
@@ -226,7 +226,7 @@ public:
 		}
 	}
 private:
-	void fromFileHelper(const std::string &filename);
+	bool fromFileHelper(const std::string &filename);
 
 	int wordsPerPage;
 
@@ -234,7 +234,7 @@ private:
 	size_t longestSceneName;
 	std::vector<const Chapter*> chapters;
 	std::map<std::string,std::string> metadata;
-	
+
 	// these are used for the story loading process
 	Scene *scene;
 	Chapter *chapter;
