@@ -80,7 +80,6 @@ void MarkdownExporter::doParagraph(const std::string &text) {
 
 
 void MarkdownExporter::end() {
-	outfile << "}";
 	outfile.flush();
 	if (outfile) {
 		std::cout << "Markdown export saved to " << filename << ".\n\n";
