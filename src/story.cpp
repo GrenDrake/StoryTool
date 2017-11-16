@@ -188,7 +188,11 @@ void Story::displayInfo() const {
 			std::cout << std::setw(width) << c->getName() << "  ";
 			std::cout << std::setw(wordCountWidth) << c->wordcount() << " words";
 			std::cout << ", line #" << c->getLine() << ", ";
-            std::cout << c->getSourceFile() << "\n";
+			if (c->getSourceFile().size() <= 22) {
+				std::cout << c->getSourceFile() << "\n";
+			} else {
+				std::cout << c->getSourceFile().substr(0,22) << "...\n";
+			}
 			for (size_t i = 0; i < width; ++i) {
 				std::cout << "-";
 			}
@@ -203,7 +207,11 @@ void Story::displayInfo() const {
 				std::cout << std::setw(wordCountWidth) << s->wordcount();
 			}
 			std::cout << " words, line #" << s->getLine() << ", ";
-            std::cout << s->getSourceFile() << "\n";
+			if (s->getSourceFile().size() <= 22) {
+				std::cout << s->getSourceFile() << "\n";
+			} else {
+				std::cout << s->getSourceFile().substr(0,22) << "...\n";
+			}
 		});
 
 		std::cout << "\n";
