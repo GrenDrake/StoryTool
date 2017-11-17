@@ -109,10 +109,13 @@ bool Story::fromFileHelper(const std::string &filename) {
             }
 
 			// handle metadata commands
-			if (inputline == "/title" || inputline == "/author" || inputline == "/date") {
-				setMetadata(inputline.substr(1), value);
-				continue;
-			}
+            if (inputline == "/title" || inputline == "/author" || inputline == "/date") {
+                if (!hasMetadata(inputline.substr(1))) {
+                    setMetadata(inputline.substr(1), value);
+                }
+                continue;
+            }
+
 
 			// process chapter boundaries
 			if (inputline == "/chapter") {
