@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "exporter.h"
 
 void RTFExporter::start(const Story &story) {

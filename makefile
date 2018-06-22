@@ -7,9 +7,9 @@
 LFLAGS=
 CXXFLAGS= --std=c++11 -g -Wall
 
-OBJS=src/storytools.o src/story.o src/replace.o src/exporterBare.o \
+OBJS=src/storytools.o src/story.o src/exporterBare.o \
 	src/exporterHTML.o src/exporterRTF.o src/exporterMarkdown.o \
-	src/exporterBBCode.o
+	src/exporterBBCode.o src/exporterLatex.o src/replace.o
 
 .PHONY: all clean
 

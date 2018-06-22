@@ -1,6 +1,7 @@
 #ifndef EXPORTER_H
 #define EXPORTER_H
 
+#include <fstream>
 #include <sstream>
 #include <string>
 
@@ -26,6 +27,30 @@ private:
 	std::ofstream outfile;
 };
 
+class LatexExporter : public StoryExporter {
+public:
+	LatexExporter(const std::string &filename)
+		: story(nullptr), filename(filename), outfile(filename),
+		firstScene(true), inList(false), listLevel(0)
+	{ }
+
+	bool virtual good() const {
+		return outfile.good();
+	}
+
+	void virtual start(const Story &story);
+	void virtual doChapter(const std::string &name);
+	void virtual doScene(const std::string &name);
+	void virtual doParagraph(const std::string &text);
+	void virtual end();
+private:
+	const Story *story;
+	std::string filename;
+	std::ofstream outfile;
+	bool firstScene;
+	bool inList;
+	size_t listLevel;
+};
 class MarkdownExporter : public StoryExporter {
 public:
 	MarkdownExporter(const std::string &filename)

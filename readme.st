@@ -26,7 +26,7 @@ Unlike many text formatting systems, every newline is considered to start a para
 
 A paragraph command consists of a forward slash immediately followed by a single word; any remaining text on the line is the paramater of the command.
 
-The most important paragraph commands are [b]/scene[/b] and [b]/chapter[/b] which begin a new scene and chapter respectively; starting a new chapter also begins a new scene. THese take the name of the scene or chapter as a paramater; while this is optional in both cases, it is recommended to include chapter names as the chapters will otherwise be named "Anonymous Chapter".
+The most important paragraph commands are [b]/scene[/b] and [b]/chapter[/b] which begin a new scene and chapter respectively; starting a new chapter also begins a new scene. These take the name of the scene or chapter as a paramater; while this is optional in both cases, it is recommended to include chapter names as the chapters will otherwise be named "Anonymous Chapter".
 
 It is possible to include text without explicitly creating a scene or chapter; this may be useful for short documents. When this occurs, StoryTool will automatically create an annonymous chapter and scene.
 
@@ -47,4 +47,3 @@ Bulleted lists are also considered to be text formatting commands; these are cre
 - item two, first level
 -- item one, second level
 - item three, first level
-
