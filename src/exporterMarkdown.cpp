@@ -47,7 +47,7 @@ void MarkdownExporter::doParagraph(const std::string &text) {
 
 
 	t = doReplace(t, "\\*", "\\*");
-	t = doReplace(t, "\\_", "\\_");
+	t = doReplace(t, "_", "\\_");
 	t = doReplace(t, "<", "&lt;");
 	t = doReplace(t, "<", "&gt;");
 	t = doReplace(t, "\\[b\\](.*?)\\[\\/b\\]", "**$1**");
