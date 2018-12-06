@@ -30,7 +30,7 @@ Unless the `-quiet` argument has been passed, StoryTool will produce a word coun
 
 StoryTool is capable of exporting documents into a variety of formats as listed in the table below. HTML formats take an extra, optional argument providing the name of a page template to use.
 
-Note that EPUB nad other ebook formats are currently not supported, but [Pandoc](https://pandoc.org/) will allow conversion of many of the supported formats into an ebook.
+Note that EPUB and other ebook formats are currently not supported, but [Pandoc](https://pandoc.org/) will allow conversion of many of the supported formats into an ebook.
 
 | **Argument Name** | **Format** | **Description** |
 |-------------------|------------|-----------------|
