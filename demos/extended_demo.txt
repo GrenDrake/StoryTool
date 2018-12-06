@@ -1,0 +1,59 @@
+/title Extended Demo
+/author Gren Drake
+/date Dec 2018
+
+/chapter The Story Begins
+
+% This is a line comment. It is ignored by StoryTool and not included in the word count or in exported files.
+
+/scene First
+
+This file demonstrates the usage of chapters and scenes within a document. And that text may be formatted as [b]bold[/b] or [i]italic[/i]. All text after the list demonstration is randomly generated.
+
+- Ludus convenire necessitatibus te mel.
+- Partiendo urbanitas nec et.
+-- Summo laoreet ius ei, erant decore nec id.
+-- Sit at vituperata intellegebat.
+- Nec ad eruditi molestiae voluptatibus, in est nullam feugiat percipitur.
+-- Sumo commodo scribentur has an, sit an audire ullamcorper, quas augue viris usu id.
+
+
+No option deterruisset his. Ea his pericula theophrastus definitionem, probo laoreet pri id. Duo exerci laudem percipit te. Ius ne facilis vituperata, has te expetenda disputationi, at liber vulputate consetetur vix. Offendit volutpat ex mel, duo ex percipit fabellas posidonium. Ne per nobis voluptaria, commodo prompta at vix.
+
+Eros accusamus deterruisset ut mei, at cibo deseruisse usu. At ius sumo dico nibh. Gubergren suscipiantur ea cum, est no atqui noster definitionem, vix quot necessitatibus in. Commune hendrerit at sit, brute tollit eu quo.
+
+/scene Second
+
+Per ad rebum perfecto sententiae. Ad vim odio delectus. Ei vix adipisci conceptam percipitur. Iriure philosophia an per.
+
+Eu est aliquip fuisset delicatissimi. Dolor impedit voluptua te est. Est postulant explicari ut. Porro animal convenire ei cum.
+
+
+/chapter The Story Continues
+
+/scene Third
+
+Ad nostro fabellas est, brute ullum placerat vim ex, sea ad ludus congue. Pro in posse harum forensibus, in percipit lucilius per. Cum soleat equidem pericula ei. Vim elitr tation animal te, sanctus labores urbanitas ut qui. Alii erroribus no pri, simul docendi has eu. Mea sanctus moderatius ut.
+
+Percipit menandri ad eos, autem dolore legendos nam no. Vix adhuc imperdiet deterruisset et, mazim veritus repudiare eu sed, sint illud soleat mei ei. Quo cu decore latine disputationi, alia laboramus an eum. No wisi latine disputationi eos, reque singulis sit eu. Exerci perpetua pro an, summo essent id eam.
+
+/scene Fourth
+
+Duis brute ne pro, has in splendide vituperata. Vix quidam dictas an, luptatum mediocrem pri in, an vim justo admodum disputationi. In sonet accusamus disputationi per, alienum argumentum appellantur eos eu. Sit cotidieque reformidans ut, vel cu volumus propriae indoctum. Dico labitur eos id. Everti vivendo quaerendum mel ne, cum quod constituam id.
+
+Hinc nihil menandri eu sed. Omnes omnesque mnesarchum per te, ea ancillae probatus philosophia duo. Ignota evertitur sed ne, perpetua rationibus ut cum. Everti eruditi deterruisset his ea. Ullum intellegat definitionem an duo, his ad mutat nemore laoreet, id sumo sapientem pro. Tollit inimicus pericula qui an, usu at homero quodsi. Dicat aeterno nam et.
+
+
+/chapter The Story Ends
+
+/scene Fifth
+
+Ullum timeam qui cu, cu nam summo vituperata concludaturque. Ea habeo movet persecuti sit, te eos malis oratio vocent. Sit saperet feugait at, ne purto errem deleniti qui. Modo congue no sit, eu nam labore erroribus.
+
+Qui stet simul labores no. Admodum vituperata per in, eam ad mutat apeirian efficiantur. Ne nam accusata suavitate, eos eu alia idque. No posse quaeque expetenda sed, ut civibus detraxit usu. Ne per oratio suscipit adipisci. An autem deseruisse eos, iisque percipit oportere cum et, an sale sonet mandamus per. Ei nostrum dignissim vix, cum facilisi intellegat cu.
+
+/scene Sixth
+
+Quis voluptua cotidieque mel te, id tale elaboraret mel. Cu adhuc dicit saperet eos, ne nec scripta intellegebat. Ea vim fuisset imperdiet repudiandae, ne audiam honestatis pro. Has ut quod menandri legendos.
+
+Nec at minim persecuti, cu eirmod deleniti deserunt duo. Mei assentior definitiones et, usu et electram voluptatibus, ei nec errem persecuti intellegat. Purto delectus eleifend mea ex, ex per case liber postulant. Aliquid delectus expetenda eos in. Eam no magna tempor. Repudiandae philosophia te eos.
